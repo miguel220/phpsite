@@ -18,7 +18,9 @@ while ($row_usuario = mysqli_fetch_assoc($resultado_usuarios)) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/modall.css">
+    <script type="text/javascript" src="./js/modall.js"></script>
+    <title>Listagem</title>
 </head>
 
 <body>
@@ -39,13 +41,28 @@ while ($row_usuario = mysqli_fetch_assoc($resultado_usuarios)) {
                     <td><?= $nome_user[$i]; ?></td>
                     <td><?= $email_user[$i]; ?></td>
                     <td>
-                        <button class="btn btn-primary" type="submit" name="Editar">Editar</button>
+                        <button id="button" class="btn btn-primary" type="submit" name="Editar">Editar</button>
                         <button class="btn btn-danger" type="submit" name="Excluir">Excluir</button>
                     </td>
                 </tr>
             <?php endfor; ?>
         </tbody>
     </table>
+
+    <div class="bg-modal">
+        <div class="modal-contents">
+
+            <div class="close">+</div>
+            <img src="https://richardmiddleton.me/comic-100.png" alt="">
+
+            <form action="">
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="E-Mail">
+                <a href="#" class="button">Submit</a>
+            </form>
+
+        </div>
+    </div>
 </body>
 
 </html>
