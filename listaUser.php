@@ -28,12 +28,13 @@ while ($row_usuario = mysqli_fetch_assoc($resultado_usuarios)) {
 
     <div class="bg-modal">
         <div class="modal-content">
-            <div class="close">+</div>
+            <div class="close" onclick="fnModalClose()">+</div>
             <form action="">
-                <input type="text" name="" id="" placeholder="Nome">
-                <input type="text" name="" id="" placeholder="E-Mail">
+                <input type="text" name="" id="modalNome" placeholder="Nome">
+                <input type="text" name="" id="modalEmail" placeholder="E-Mail">
+                <input type="hidden" name="" id="modalID" placeholder="E-Mail">
                 <a href="" class="btn btn-primary">Alterar</a>
-                <a href="" id="Manter" class="btn btn-danger">Manter</a>
+                <a href="" id="Manter" class="btn btn-danger" onclick="fnModalClose()">Manter</a>
             </form>
         </div>
     </div>
@@ -55,7 +56,7 @@ while ($row_usuario = mysqli_fetch_assoc($resultado_usuarios)) {
                     <td><?= $nome_user[$i]; ?></td>
                     <td><?= $email_user[$i]; ?></td>
                     <td>
-                        <a id="Editar" class="btn btn-primary" type="submit" name="Editar" href="listaUser.php?<?= $id[$i]; ?>">Editar</a>
+                        <a id="Editar" class="btn btn-primary" type="submit" name="Editar" onclick="fnModal(<?= $id[$i];?>,'<?=$nome_user[$i] ?>','<?=$email_user[$i];?>' )">Editar</a>
                         <a class="btn btn-danger" type="submit" name="Excluir">Excluir</a>
                     </td>
                 </tr>
