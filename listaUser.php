@@ -18,12 +18,26 @@ while ($row_usuario = mysqli_fetch_assoc($resultado_usuarios)) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/modall.css">
-    <script type="text/javascript" src="./js/modall.js"></script>
+    <link rel="stylesheet" href="./css/modal.css">
+
     <title>Listagem</title>
+
 </head>
 
 <body>
+
+    <div class="bg-modal">
+        <div class="modal-content">
+            <div class="close">+</div>
+            <form action="">
+                <input type="text" name="" id="" placeholder="Nome">
+                <input type="text" name="" id="" placeholder="E-Mail">
+                <a href="" class="btn btn-primary">Alterar</a>
+                <a href="" id="Manter" class="btn btn-danger">Manter</a>
+            </form>
+        </div>
+    </div>
+
     <center><a href="http://localhost/phpsite/index.php" class="btn btn-primary">Home</a></center>
     <table class="table caption-top">
         <caption>List of users</caption>
@@ -41,28 +55,16 @@ while ($row_usuario = mysqli_fetch_assoc($resultado_usuarios)) {
                     <td><?= $nome_user[$i]; ?></td>
                     <td><?= $email_user[$i]; ?></td>
                     <td>
-                        <button id="button" class="btn btn-primary" type="submit" name="Editar">Editar</button>
-                        <button class="btn btn-danger" type="submit" name="Excluir">Excluir</button>
+                        <a id="Editar" class="btn btn-primary" type="submit" name="Editar" href="listaUser.php?<?= $id[$i]; ?>">Editar</a>
+                        <a class="btn btn-danger" type="submit" name="Excluir">Excluir</a>
                     </td>
                 </tr>
             <?php endfor; ?>
         </tbody>
     </table>
 
-    <div class="bg-modal">
-        <div class="modal-contents">
 
-            <div class="close">+</div>
-            <img src="https://richardmiddleton.me/comic-100.png" alt="">
-
-            <form action="">
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="E-Mail">
-                <a href="#" class="button">Submit</a>
-            </form>
-
-        </div>
-    </div>
+    <script type="text/javascript" src="./js/modal.js"></script>
 </body>
 
 </html>
