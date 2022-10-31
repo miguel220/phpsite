@@ -25,7 +25,7 @@
 						if ($_GET['responseLogin'] == "email") {
 							echo "<center><h2 style='color:red;'>Email invalido!</h2></center>";
 						} elseif ($_GET['responseLogin'] == "senha") {
-							echo "<center><h2 style='color:red;'>Senha</h2></center incorreta!</h2></center>";
+							echo "<center><h2 style='color:red;'>Senha Invalida</h2></center incorreta!</h2></center>";
 						}
 					}
 					?>

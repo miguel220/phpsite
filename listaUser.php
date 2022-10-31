@@ -8,6 +8,39 @@ while ($row_usuario = mysqli_fetch_assoc($resultado_usuarios)) {
     $email_user[] = $row_usuario['email'];
 }
 
+
+if (isset($_POST['Alterar'])) {
+
+    $nomeEdit = $_POST['nameEdit'];
+    $emailEdit = $_POST['emailEdit'];
+    $idEdit = $_POST['idEdit'];
+
+    $sql = $pdo->prepare("UPDATE users SET nome = '$nomeEdit', email = '$emailEdit' WHERE ID = $idEdit");
+    $sql->execute();
+
+    header("refresh: 0");
+
+    // mysqli_query($connect, "UPDATE users SET name = $nomeEdit, email = $emailEdit WHERE ID = $id");
+    // header("Location: listaUser.php?response=sucess");
+}
+
+if (isset($_POST['Alterar'])) {
+
+    $nomeEdit = $_POST['nameEdit'];
+    $emailEdit = $_POST['emailEdit'];
+    $idEdit = $_POST['idEdit'];
+
+    $sql = $pdo->prepare("UPDATE users SET nome = '$nomeEdit', email = '$emailEdit' WHERE ID = $idEdit");
+    $sql->execute();
+
+    header("refresh: 0");
+
+    // mysqli_query($connect, "UPDATE users SET name = $nomeEdit, email = $emailEdit WHERE ID = $id");
+    // header("Location: listaUser.php?response=sucess");
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,17 +62,20 @@ while ($row_usuario = mysqli_fetch_assoc($resultado_usuarios)) {
     <div class="bg-modal">
         <div class="modal-content">
             <div class="close" onclick="fnModalClose()">+</div>
-            <form action="">
-                <input type="text" name="" id="modalNome" placeholder="Nome">
-                <input type="text" name="" id="modalEmail" placeholder="E-Mail">
-                <input type="hidden" name="" id="modalID" placeholder="E-Mail">
-                <a href="" class="btn btn-primary">Alterar</a>
+            <form method="post" action="listaUser.php">
+                <input type="text" name="nameEdit" id="modalNome" placeholder="Nome">
+                <input type="text" name="emailEdit" id="modalEmail" placeholder="E-Mail">
+                <input type="hidden" name="idEdit" id="modalID" placeholder="E-Mail">
+                <input type="submit" class="btn btn-primary" name="Alterar" value="Alterar">
                 <a href="" id="Manter" class="btn btn-danger" onclick="fnModalClose()">Manter</a>
             </form>
         </div>
     </div>
 
-    <center><a href="http://localhost/phpsite/index.php" class="btn btn-primary">Home</a></center>
+    <center>
+        <a href="http://localhost/phpsite/index.php" class="btn btn-primary">Home</a>
+        <a href="http://localhost/phpsite/registro.php" class="btn btn-primary">Cadastro</a> 
+    </center>
     <table class="table caption-top">
         <caption>List of users</caption>
         <thead>
@@ -56,14 +92,13 @@ while ($row_usuario = mysqli_fetch_assoc($resultado_usuarios)) {
                     <td><?= $nome_user[$i]; ?></td>
                     <td><?= $email_user[$i]; ?></td>
                     <td>
-                        <a id="Editar" class="btn btn-primary" type="submit" name="Editar" onclick="fnModal(<?= $id[$i];?>,'<?=$nome_user[$i] ?>','<?=$email_user[$i];?>' )">Editar</a>
+                        <a id="Editar" class="btn btn-primary" type="submit" name="Editar" onclick="fnModal(<?= $id[$i]; ?>,'<?= $nome_user[$i] ?>','<?= $email_user[$i]; ?>' )">Editar</a>
                         <a class="btn btn-danger" type="submit" name="Excluir">Excluir</a>
                     </td>
                 </tr>
             <?php endfor; ?>
         </tbody>
     </table>
-
 
     <script type="text/javascript" src="./js/modal.js"></script>
 </body>

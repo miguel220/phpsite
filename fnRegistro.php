@@ -13,7 +13,8 @@
         if(mysqli_num_rows($verify) > 0){
             header("Location: registro.php?response=email");
         }else{
-            mysqli_query($connect, "INSERT INTO users (nome, email, senha, active) VALUES ('$nome','$email', '$senha', 1)");
+            $sql = $pdo->prepare("INSERT INTO users (nome, email, senha, active) VALUES ('$nome','$email', '$senha', 1)");
+            $sql->execute();
             header("Location: index.php?response=sucess");
         }
     }
