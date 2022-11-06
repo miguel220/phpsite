@@ -23,21 +23,25 @@ if (isset($_POST['Alterar'])) {
     // mysqli_query($connect, "UPDATE users SET name = $nomeEdit, email = $emailEdit WHERE ID = $id");
     // header("Location: listaUser.php?response=sucess");
 }
+if(isset($_GET['id'])){
+    $idEdit = $_GET['id'];
 
-if (isset($_POST['Alterar'])) {
-
-    $nomeEdit = $_POST['nameEdit'];
-    $emailEdit = $_POST['emailEdit'];
-    $idEdit = $_POST['idEdit'];
-
-    $sql = $pdo->prepare("UPDATE users SET nome = '$nomeEdit', email = '$emailEdit' WHERE ID = $idEdit");
+    $sql = $pdo->prepare("DELETE FROM users WHERE ID = $idEdit");
     $sql->execute();
 
-    header("refresh: 0");
-
-    // mysqli_query($connect, "UPDATE users SET name = $nomeEdit, email = $emailEdit WHERE ID = $id");
-    // header("Location: listaUser.php?response=sucess");
+    header("Location: listaUser.php");
 }
+
+
+// if (isset($_POST['Excluir'])) {
+//     die($_POST['Excluir']);
+    
+
+//     // mysqli_query($connect, "DELETE FROM users WHERE ID = $idEdit");
+//     // header("Location: listaUser.php?response=sucess");
+// }
+
+
 
 
 
@@ -74,7 +78,7 @@ if (isset($_POST['Alterar'])) {
 
     <center>
         <a href="http://localhost/phpsite/index.php" class="btn btn-primary">Home</a>
-        <a href="http://localhost/phpsite/registro.php" class="btn btn-primary">Cadastro</a> 
+        <a href="http://localhost/phpsite/registro.php" class="btn btn-primary">Cadastro</a>
     </center>
     <table class="table caption-top">
         <caption>List of users</caption>
@@ -93,7 +97,7 @@ if (isset($_POST['Alterar'])) {
                     <td><?= $email_user[$i]; ?></td>
                     <td>
                         <a id="Editar" class="btn btn-primary" type="submit" name="Editar" onclick="fnModal(<?= $id[$i]; ?>,'<?= $nome_user[$i] ?>','<?= $email_user[$i]; ?>' )">Editar</a>
-                        <a class="btn btn-danger" type="submit" name="Excluir">Excluir</a>
+                        <a class="btn btn-danger" href="listaUser.php?id=<?= $id[$i]; ?>" type="submit" name="Excluir">Excluir</a>
                     </td>
                 </tr>
             <?php endfor; ?>
